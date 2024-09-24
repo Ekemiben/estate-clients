@@ -7,6 +7,8 @@ export default defineConfig({
     proxy:{
       '/server':{
         target:"http://localhost:5000",
+        // target:"https://estate-api-9m5u.onrender.com/",
+        
         secure:false,
       }
     }
