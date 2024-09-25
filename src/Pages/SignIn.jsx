@@ -61,7 +61,9 @@ export default function SignIn() {
     } catch (error) {
       // setLoading(false);
       // setError(error.message)
-      dispatch(signInFailure(error.message))
+      // dispatch(signInFailure(error.message))
+      console.error("Fetch error:", error); // Log the error
+      dispatch(signInFailure("An error occurred. Please try again."));
     }
    
   }

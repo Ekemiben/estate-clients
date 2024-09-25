@@ -13,23 +13,30 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
   console.log(offerListings);
+
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
         const res = await fetch('/server/listing/get?offer=true&limit=4');
-        const data = await res.json();
-        setOfferListings(data);
-        fetchRentListings();
+        if(res){
+          const data = await res.json();
+          setOfferListings(data);
+          fetchRentListings();
+        }
+       
       } catch (error) {
         console.log(error);
       }
     };
     const fetchRentListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
-        const data = await res.json();
-        setRentListings(data);
-        fetchSaleListings();
+        const res = await fetch('/server/listing/get?type=rent&limit=4');
+        if(res){
+          const data = await res.json();
+          setRentListings(data);
+          fetchSaleListings();
+        }
+        
       } catch (error) {
         console.log(error);
       }
@@ -37,11 +44,14 @@ export default function Home() {
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
-        const data = await res.json();
-        setSaleListings(data);
+        const res = await fetch('/server/listing/get?type=sale&limit=4');
+        if(res){
+          const data = await res.json();
+          setSaleListings(data);
+        }
+       
       } catch (error) {
-        log(error);
+       console.log(error);
       }
     };
     fetchOfferListings();
